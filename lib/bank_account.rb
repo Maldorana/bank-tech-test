@@ -4,7 +4,7 @@ class BankAccount
   attr_reader :balance, :history
 
   def initialize
-    @balance = 0.00
+    @balance = 0
     @history = []
   end
 
@@ -23,7 +23,18 @@ class BankAccount
     @history << BankOperation.new(formatted_time(Time.now), '', amount, @balance)
   end
 
+  def statement
+    puts 'date || credit || debit || balance'
+    @history.each do |log|
+      puts "#{log.date} || #{formatted_number(log.credit)} || #{formatted_number(log.debit)} || #{formatted_number(log.new_balance)}"
+    end
+  end
+
   private
+
+  def formatted_number(number)
+    '%.2f' % number if number.is_a?(Numeric)
+  end
 
   def formatted_time(time)
     time.strftime("%d/%m/%Y")

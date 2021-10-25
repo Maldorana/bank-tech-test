@@ -3,19 +3,19 @@ require 'bank_account'
 describe BankAccount do
   describe 'basic banking functions' do
     it 'has an initial balance of 0' do
-      expect(subject.balance).to eq(0.00)
+      expect(subject.balance).to eq(0)
     end
 
     it 'can deposit to the balance' do
       subject.deposit(100)
-      expect(subject.balance).to eq(100.00)
+      expect(subject.balance).to eq(100)
     end
 
     it 'can withdraw from the balance' do
       subject.deposit(100)
-      expect(subject.balance).to eq(100.00)
+      expect(subject.balance).to eq(100)
       subject.withdraw(50)
-      expect(subject.balance).to eq(50.00)
+      expect(subject.balance).to eq(50)
     end
   end
 
@@ -46,6 +46,13 @@ describe BankAccount do
       expect(subject.history[1].credit).to eq('')
       expect(subject.history[1].debit).to eq(25)
       expect(subject.history[1].new_balance).to eq(75)
+    end
+  end
+
+  describe 'the log can be consulted' do
+    it 'prints the header of the statement' do
+      subject.deposit(100)
+      expect { subject.statement }.to output("date || credit || debit || balance\n25/10/2021 || 100.00 ||  || 100.00\n").to_stdout
     end
   end
 

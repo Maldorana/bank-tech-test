@@ -9,4 +9,11 @@ describe BankAccount do
     subject.deposit(100)
     expect(subject.balance).to eq(100)
   end
+
+  it 'can withdraw from the balance' do
+    subject.deposit(100)
+    expect(subject.balance).to eq(100)
+    subject.withdraw(50)
+    expect(subject.balance).to eq(50)
+  end
 end

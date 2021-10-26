@@ -75,7 +75,7 @@ Examples:
 This feature will print the account's current balance.
 
 ### Viewing your account statement
-`account.statement`
+`BankPrinter.print_statement(account.history)`
 
 This feature will print the account's bank statement.
 
@@ -91,14 +91,15 @@ This feature will print the account's bank statement.
 
 ![Tests and coverage](/img/tests.png)
 
-- To keep things simple yet organised, I created my program using 2 classes: `BankAccount` and `BankOperation`.
+- To keep things simple yet organised, I created my program using 3 classes: `BankAccount`, `BankOperation` and `BankPrinter`.
 
 | Class name  | Description | Attributes | Methods
 | ----------- | ----------------- | ---------- | ------- 
-| `BankAccount`  | The user interface of the account  | `balance`, `history` | `deposit(amount)`, `withdraw(amount)` - allows the user to deposit/withdraw money respectively, `statement` - prints the users statement
+| `BankAccount`  | The user interface of the account  | `balance`, `history` | `deposit(amount)`, `withdraw(amount)` - allows the user to deposit/withdraw money respectively
 | `BankOperation` | Stores data of a single transaction | `date`, `credit`, `debit`, `new_balance` | |
+| `BankPrinter` | Prints the bank statement | | `self.print_statement(history)` |
 
 # Demo
 
-![Tests and coverage](/img/bank-demo.gif)
+![Tests and coverage](/img/bank-demo2.gif)
 

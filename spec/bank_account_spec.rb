@@ -32,9 +32,9 @@ describe BankAccount do
     end
 
     it 'saves all the data for the deposit operation into the log' do
-      allow(Time).to receive(:now).and_return Time.parse('2021-10-26')
+      allow(Time).to receive(:now).and_return(Time.parse('2021-10-26'))
       subject.deposit(100)
-      expect(subject.history[0].date).to eq(Time.now.strftime('%d/%m/%Y'))
+      expect(subject.history[0].date).to eq(Time.parse('2021-10-26'))
       expect(subject.history[0].credit).to eq(100)
       expect(subject.history[0].debit).to eq('')
       expect(subject.history[0].new_balance).to eq(100)
@@ -44,18 +44,10 @@ describe BankAccount do
       allow(Time).to receive(:now).and_return Time.parse('2021-10-26')
       subject.deposit(100)
       subject.withdraw(25)
-      expect(subject.history[1].date).to eq(Time.now.strftime('%d/%m/%Y'))
+      expect(subject.history[1].date).to eq(Time.parse('2021-10-26'))
       expect(subject.history[1].credit).to eq('')
       expect(subject.history[1].debit).to eq(25)
       expect(subject.history[1].new_balance).to eq(75)
-    end
-  end
-
-  describe 'the log can be consulted' do
-    it 'prints the statement with all the banking operations' do
-      allow(Time).to receive(:now).and_return Time.parse('2021-10-26')
-      subject.deposit(100)
-      expect { subject.statement }.to output("date || credit || debit || balance\n#{Time.now.strftime('%d/%m/%Y')} || 100.00 ||  || 100.00\n").to_stdout
     end
   end
 

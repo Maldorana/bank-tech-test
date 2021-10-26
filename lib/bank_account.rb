@@ -1,4 +1,4 @@
-require 'bank_operation'
+require_relative 'bank_operation'
 
 class BankAccount
   attr_reader :balance, :history
@@ -37,7 +37,7 @@ class BankAccount
   end
 
   def formatted_time(time)
-    time.strftime("%d/%m/%Y")
+    time.strftime('%d/%m/%Y')
   end
 
   def insufficient_funds?(amount)
